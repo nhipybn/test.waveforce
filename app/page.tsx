@@ -186,18 +186,29 @@ export default function Home() {
             <p className="text-muted-foreground">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
-          <div className="card-gradient border border-accent/30 rounded-2xl p-8 md:p-12 bg-[#0b1d36]/30">
-            {/* Sử dụng dangerouslySetInnerHTML để trình duyệt xử lý script 
-               giống như một trang HTML thuần túy.
-            */}
-            <div 
-              key="bownow-wrapper"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  <div id="bownow-form-container"></div>
-                  <script type="text/javascript" src="https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js" charset="utf-8"></script>
-                `
+          <div className="card-gradient border border-accent/30 rounded-2xl p-4 md:p-8 bg-[#0b1d36]/30 overflow-hidden">
+            {/* Sử dụng iframe srcDoc để tạo môi trường HTML tĩnh cho script BowNow */}
+            <iframe
+              srcDoc={`
+                <html>
+                  <head>
+                    <style>
+                      body { margin: 0; padding: 0; background: transparent; font-family: sans-serif; color: white; }
+                      /* Tùy chỉnh CSS cho form bên trong iframe nếu cần */
+                    </style>
+                  </head>
+                  <body>
+                    <div id="bownow-form-container"></div>
+                    <script type="text/javascript" src="https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js" charset="utf-8"></script>
+                  </body>
+                </html>
+              `}
+              style={{
+                width: '100%',
+                height: '600px', // Bạn có thể tăng giảm chiều cao tùy vào độ dài của form
+                border: 'none',
               }}
+              title="BowNow Form"
             />
           </div>
         </div>
