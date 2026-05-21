@@ -187,12 +187,18 @@ export default function Home() {
           </div>
 
           <div className="card-gradient border border-accent/30 rounded-2xl p-8 md:p-12 bg-[#0b1d36]/30">
-            {/* ĐÂY LÀ NƠI FORM SẼ HIỂN THỊ */}
-            <div id="bownow-form-container" className="w-full min-h-[500px]">
-               <div className="flex items-center justify-center h-full">
-                  <p className="text-accent animate-pulse">Loading secure form...</p>
-               </div>
-            </div>
+            {/* Sử dụng dangerouslySetInnerHTML để trình duyệt xử lý script 
+               giống như một trang HTML thuần túy.
+            */}
+            <div 
+              key="bownow-wrapper"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  <div id="bownow-form-container"></div>
+                  <script type="text/javascript" src="https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js" charset="utf-8"></script>
+                `
+              }}
+            />
           </div>
         </div>
       </section>
