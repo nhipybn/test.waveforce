@@ -181,44 +181,29 @@ export default function Home() {
       </section>
 
       {/* 5. CONTACT FORM (BOWNOW) */}
-      <section id="contact" className="py-16 md:py-28">
+     {/* 5. CONTACT FORM (NHÚNG TRỰC TIẾP QUA IFRAME) */}
+      <section id="contact" className="py-16 md:py-28 bg-[#081529]">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Ready to Start?</h2>
             <p className="text-muted-foreground text-lg">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 shadow-2xl">
-            {/* Wrapper ID bắt buộc của BowNow */}
-            <div
-              className="relative w-full min-h-[400px]"
-              id="_bownow_cs_form_sid_79340359725cff1f243d"
+          <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
+            {/* Thay vì dùng script, ta dùng iframe trỏ thẳng tới view?form_id=...
+                Lưu ý: Bạn hãy kiểm tra lại form_id trong link dưới đây có đúng là sid của bạn không
+            */}
+            <iframe 
+              src="https://contents.bownow.jp/forms/view?form_id=sid_79340359725cff1f243d" 
+              width="100%" 
+              height="800" 
+              frameBorder="0" 
+              scrolling="yes"
+              style={{ display: 'block', border: 'none' }}
+              title="Waveforce Contact Form"
             >
-              <div className="flex flex-col items-center justify-center py-20 text-gray-400 italic">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent mb-4"></div>
-                  <p>Loading contact form...</p>
-              </div>
-            </div>
-
-            {/* Script BowNow - Sử dụng logic project cũ của bạn */}
-            <Script id="bownow-inject-logic" strategy="afterInteractive">
-              {`
-                (function() {
-                  var sid = 'sid_79340359725cff1f243d';
-                  var scriptId = '_bownow_cs_' + sid;
-                  
-                  // Xóa script cũ nếu có để tránh lỗi lặp
-                  var existing = document.getElementById(scriptId);
-                  if (existing) existing.remove();
-
-                  var s = document.createElement('script');
-                  s.id = scriptId;
-                  s.charset = 'utf-8';
-                  s.src = 'https://contents.bownow.jp/forms/' + sid + '/trace.js?t=' + new Date().getTime();
-                  document.getElementsByTagName('head')[0].appendChild(s);
-                })();
-              `}
-            </Script>
+              Loading form...
+            </iframe>
           </div>
         </div>
       </section>
