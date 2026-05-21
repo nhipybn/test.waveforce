@@ -189,7 +189,7 @@ export default function Home() {
             <p className="text-muted-foreground text-lg">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
-          <div className="bg-black rounded-3xl overflow-hidden shadow-2xl">
+          <div className="bg-[#0b1d36] rounded-[2.5rem] shadow-2xl p-8 md:p-16">
             {/* Thay vì dùng script, ta dùng iframe trỏ thẳng tới view?form_id=...
                 Lưu ý: Bạn hãy kiểm tra lại form_id trong link dưới đây có đúng là sid của bạn không
             */}
