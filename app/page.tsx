@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, ArrowRight, Download } from 'lucide-react'
 import Image from 'next/image'
-import Script from 'next/script'
 
 export default function Home() {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -20,7 +19,11 @@ export default function Home() {
     setIsNavOpen(false)
   }
 
+<<<<<<< HEAD
   // 2. Hiệu ứng Navbar khi cuộn trang
+=======
+  // 1. Hook xử lý hiệu ứng cuộn của Navbar
+>>>>>>> 283b173 (fix: update contact form logic)
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.getElementById('navbar')
@@ -32,6 +35,25 @@ export default function Home() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // 2. Hook chủ động tải Script BowNow để tự động render Form vào đúng container
+  useEffect(() => {
+    const container = document.getElementById('bownow-form-container')
+    if (!container) return
+
+    const script = document.createElement('script')
+    script.src = "https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js"
+    script.charset = "utf-8"
+    script.async = true
+
+    container.appendChild(script)
+
+    return () => {
+      if (container && container.contains(script)) {
+        container.removeChild(script)
+      }
+    }
   }, [])
 
   return (
@@ -311,6 +333,7 @@ export default function Home() {
             <p className="text-muted-foreground text-lg">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
+<<<<<<< HEAD
           <div className="bg-[#0b1d36] rounded-[2.5rem] shadow-2xl p-8 md:p-16">
             {/* Thay vì dùng script, ta dùng iframe trỏ thẳng tới view?form_id=...
                 Lưu ý: Bạn hãy kiểm tra lại form_id trong link dưới đây có đúng là sid của bạn không
@@ -326,6 +349,27 @@ export default function Home() {
             >
               Loading form...
             </iframe>
+=======
+          <div className="card-gradient border border-accent/30 rounded-xl p-8 md:p-12 hover:border-accent hover:shadow-2xl hover:shadow-accent/40 transition-all">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">
+              Get Your Project Quote
+            </h3>
+
+            <p className="text-muted-foreground mb-8 text-center max-w-2xl mx-auto leading-8">
+              Fill out the form and our team will review your project details
+              and provide a customized quote within 24 hours.
+            </p>
+
+            {/* DÙNG IFRAME ĐỂ BỎ QUA XUNG ĐỘT JAVASCRIPT ĐỐI VỚI NEXT.JS */}
+            <div className="w-full min-h-[500px] overflow-hidden rounded-lg bg-white">
+              <iframe
+                src="https://contents.bownow.jp/forms/sid_79340359725cff1f243d"
+                className="w-full h-[600px] border-0"
+                title="BowNow Contact Form"
+                allowFullScreen
+              />
+            </div>
+>>>>>>> 283b173 (fix: update contact form logic)
           </div>
         </div>
       </section>
