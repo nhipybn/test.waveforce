@@ -86,7 +86,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6 md:space-y-8">
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
                 Professional 3D Game Assets for Indie Developers
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl">
@@ -108,12 +108,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. PAIN POINTS & SOLUTIONS */}
+      {/* 2. PAIN POINTS */}
       <section id="why-us" className="py-16 md:py-28 bg-[#040a16]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">The Challenge</h2>
-            <p className="text-muted-foreground">Game studios face these problems. We solve them.</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">The Challenge</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -134,61 +133,56 @@ export default function Home() {
       {/* 3. PORTFOLIO */}
       <section id="portfolio" className="py-16 md:py-28">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-12">Featured Works</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-12 text-white">Featured Works</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="relative h-64 rounded-xl overflow-hidden group border border-accent/20">
-                <Image src={`/images/portfolio${i}.jpg`} alt="Portfolio" fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                <Image 
+                  src={`/images/portfolio${i}.jpg`} 
+                  alt="Portfolio" 
+                  fill 
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=Waveforce' }}
+                />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. DOWNLOADS */}
-      <section id="downloads" className="py-16 md:py-28 bg-[#081529]">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center text-white">Download Materials</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {['Stylized Character', 'Environment Kit', 'Unity Package'].map((title, i) => (
-              <div key={i} className="p-6 rounded-2xl border border-cyan-900/60 bg-[#0b1d36] flex flex-col justify-between">
-                <h4 className="text-xl font-bold text-white mb-4">{title}</h4>
-                <a href="#" className="w-full py-3 bg-cyan-400 text-black text-center font-bold rounded-xl hover:bg-cyan-300 transition">
-                  Download
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CONTACT FORM (BOWNOW - SỬ DỤNG LOGIC CŨ CỦA BẠN) */}
-      <section id="contact" className="py-16 md:py-28">
+      {/* 5. CONTACT FORM (LOGIC PROJECT CŨ) */}
+      <section id="contact" className="py-16 md:py-28 bg-[#081529]">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Ready to Start?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Ready to Start?</h2>
             <p className="text-muted-foreground">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
-          <div className="card-gradient border border-accent/30 rounded-2xl p-8 bg-white text-gray-900">
-             <h3 className="text-2xl font-bold mb-6">Contact Form</h3>
-            
-            {/* Wrapper giữ vị trí form - ID DỰA TRÊN SID MỚI */}
+          <div className="bg-white rounded-2xl p-8 shadow-2xl">
+            {/* 1. Wrapper giữ vị trí form - ID PHẢI ĐÚNG ĐỊNH DẠNG BOWNOW */}
             <div
               className="relative w-full min-h-[400px]"
               id="_bownow_cs_form_sid_79340359725cff1f243d"
             >
-              <p className="text-center py-10 text-gray-400 italic">Loading form...</p>
+              <p className="text-center py-20 text-gray-400 italic animate-pulse">Loading form...</p>
             </div>
 
-            {/* Script BowNow - Logic Inject Head từ project cũ */}
-            <Script id="_bownow_cs_sid_79340359725cff1f243d" strategy="afterInteractive">
+            {/* 2. Script thực thi logic của bạn */}
+            <Script id="bownow-inject-logic" strategy="afterInteractive">
               {`
                 (function() {
-                  var _bownow_cs_sid_79340359725cff1f243d = document.createElement('script');
-                  _bownow_cs_sid_79340359725cff1f243d.charset = 'utf-8';
-                  _bownow_cs_sid_79340359725cff1f243d.src = 'https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js';
-                  document.getElementsByTagName('head')[0].appendChild(_bownow_cs_sid_79340359725cff1f243d);
+                  var sid = 'sid_79340359725cff1f243d';
+                  var scriptId = '_bownow_cs_' + sid;
+                  
+                  // Kiểm tra nếu script đã tồn tại thì xóa đi để tránh lỗi lặp
+                  var existing = document.getElementById(scriptId);
+                  if (existing) existing.remove();
+
+                  var s = document.createElement('script');
+                  s.id = scriptId;
+                  s.charset = 'utf-8';
+                  s.src = 'https://contents.bownow.jp/forms/' + sid + '/trace.js?t=' + new Date().getTime();
+                  document.getElementsByTagName('head')[0].appendChild(s);
                 })();
               `}
             </Script>
@@ -198,13 +192,7 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer className="py-12 border-t border-accent/20 text-center">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-center gap-2 mb-4">
-            <Image src="/logo.png" alt="Waveforce" width={30} height={30} />
-            <span className="font-bold">WAVEFORCE STUDIO</span>
-          </div>
-          <p className="text-sm text-muted-foreground">© 2026 Waveforce Studio. All rights reserved.</p>
-        </div>
+        <p className="text-sm text-muted-foreground">© 2026 Waveforce Studio. All rights reserved.</p>
       </footer>
     </main>
   )
