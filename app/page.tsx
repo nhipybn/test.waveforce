@@ -86,17 +86,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6 md:space-y-8">
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 Professional 3D Game Assets for Indie Developers
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl">
-                Get production-ready 3D characters, environments, and assets. Founded by AAA veterans.
+                Get production-ready 3D characters, environments, and assets. Founded by AAA veterans. Trusted by 500+ indie studios worldwide.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button onClick={() => scrollToSection('contact')} className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-bold flex items-center justify-center gap-2">
+                <button onClick={() => scrollToSection('contact')} className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-bold flex items-center justify-center gap-2 transform hover:scale-105 transition-all">
                   Start Your Project <ArrowRight size={20} />
                 </button>
-                <button onClick={() => scrollToSection('portfolio')} className="px-8 py-3 border-2 border-accent text-accent rounded-lg font-bold">
+                <button onClick={() => scrollToSection('portfolio')} className="px-8 py-3 border-2 border-accent text-accent rounded-lg font-bold hover:bg-accent/10">
                   View Portfolio
                 </button>
               </div>
@@ -108,17 +108,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. PAIN POINTS */}
+      {/* 2. PAIN POINTS & SOLUTIONS */}
       <section id="why-us" className="py-16 md:py-28 bg-[#040a16]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">The Challenge</h2>
+            <p className="text-muted-foreground">Game studios face những vấn đề này. Chúng tôi có giải pháp.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: 'Broken Topology', problem: 'Auto-retopo causing animation breaks.', solution: '100% manual retopology.' },
-              { title: 'FPS Drops', problem: 'Unoptimized polycounts.', solution: 'Strict budget & LOD management.' },
-              { title: 'Inconsistent Art', problem: 'Mismatched freelance assets.', solution: 'Strict adherence to your art bible.' },
+              { title: 'Broken Topology', problem: 'Auto-retopo causing animation breaks.', solution: '100% manual retopology for clean articulation.' },
+              { title: 'FPS Drops', problem: 'Unoptimized polycounts and bloated textures.', solution: 'Strict budget management & optimized LODs.' },
+              { title: 'Inconsistent Art', problem: 'Mismatched freelance and store assets.', solution: 'Strict adherence to your project art bible.' },
+              { title: 'Messy Integration', problem: 'Broken scales and offset pivots.', solution: 'Fully zeroed transforms for Unreal/Unity.' },
+              { title: 'Poor Communication', problem: 'Vendors cutting contact post-delivery.', solution: 'Continuous support until all assets function.' },
+              { title: 'Quality Drops', problem: 'Quality degrading after initial approval.', solution: 'Strict internal QA from start to finish.' },
             ].map((item, i) => (
               <div key={i} className="rounded-lg overflow-hidden border border-cyan-900/60 bg-[#081529] p-6">
                 <h4 className="font-bold text-white mb-4 border-b border-cyan-900/60 pb-2">{item.title}</h4>
@@ -130,7 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. PORTFOLIO */}
+      {/* 3. PORTFOLIO SECTION */}
       <section id="portfolio" className="py-16 md:py-28">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-12 text-white">Featured Works</h2>
@@ -142,7 +146,9 @@ export default function Home() {
                   alt="Portfolio" 
                   fill 
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=Waveforce' }}
+                  onError={(e) => { 
+                    (e.target as HTMLImageElement).src = 'https://placehold.co/600x400/081529/cyan?text=Waveforce+Work' 
+                  }}
                 />
               </div>
             ))}
@@ -150,31 +156,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. CONTACT FORM (LOGIC PROJECT CŨ) */}
-      <section id="contact" className="py-16 md:py-28 bg-[#081529]">
+      {/* 4. DOWNLOADS SECTION */}
+      <section id="downloads" className="py-16 md:py-28 bg-[#081529]">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">Download Materials</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: 'Stylized Duo Enforcer', desc: 'Marmoset viewer file' },
+              { title: 'Stylized Male Enforcer', desc: 'Unreal Engine 5.0 - 5.7' },
+              { title: 'Stylized Bedroom', desc: 'Unity package file' }
+            ].map((item, i) => (
+              <div key={i} className="p-6 rounded-2xl border border-cyan-900/60 bg-[#0b1d36] flex flex-col justify-between">
+                <div>
+                    <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
+                    <p className="text-gray-400 text-sm mb-6">{item.desc}</p>
+                </div>
+                <button className="w-full py-3 bg-cyan-400 text-black text-center font-bold rounded-xl hover:bg-cyan-300 transition flex items-center justify-center gap-2">
+                  <Download size={18} /> Download
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CONTACT FORM (BOWNOW) */}
+      <section id="contact" className="py-16 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Ready to Start?</h2>
-            <p className="text-muted-foreground">Provide your details and we will provide a quote within 24 hours.</p>
+            <p className="text-muted-foreground text-lg">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-2xl">
-            {/* 1. Wrapper giữ vị trí form - ID PHẢI ĐÚNG ĐỊNH DẠNG BOWNOW */}
+          <div className="bg-white rounded-3xl p-8 shadow-2xl">
+            {/* Wrapper ID bắt buộc của BowNow */}
             <div
               className="relative w-full min-h-[400px]"
               id="_bownow_cs_form_sid_79340359725cff1f243d"
             >
-              <p className="text-center py-20 text-gray-400 italic animate-pulse">Loading form...</p>
+              <div className="flex flex-col items-center justify-center py-20 text-gray-400 italic">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent mb-4"></div>
+                  <p>Loading contact form...</p>
+              </div>
             </div>
 
-            {/* 2. Script thực thi logic của bạn */}
+            {/* Script BowNow - Sử dụng logic project cũ của bạn */}
             <Script id="bownow-inject-logic" strategy="afterInteractive">
               {`
                 (function() {
                   var sid = 'sid_79340359725cff1f243d';
                   var scriptId = '_bownow_cs_' + sid;
                   
-                  // Kiểm tra nếu script đã tồn tại thì xóa đi để tránh lỗi lặp
+                  // Xóa script cũ nếu có để tránh lỗi lặp
                   var existing = document.getElementById(scriptId);
                   if (existing) existing.remove();
 
@@ -191,8 +224,14 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-12 border-t border-accent/20 text-center">
-        <p className="text-sm text-muted-foreground">© 2026 Waveforce Studio. All rights reserved.</p>
+      <footer className="py-12 border-t border-white/10 text-center bg-[#040a16]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-center items-center gap-2 mb-6">
+            <Image src="/logo.png" alt="Waveforce" width={30} height={30} />
+            <span className="font-bold text-white tracking-widest">WAVEFORCE STUDIO</span>
+          </div>
+          <p className="text-sm text-gray-500">© 2026 Waveforce Studio. All rights reserved.</p>
+        </div>
       </footer>
     </main>
   )
