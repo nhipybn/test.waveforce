@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, ArrowRight, Download } from 'lucide-react'
 import Image from 'next/image'
+import Script from 'next/script'
 
 export default function Home() {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -32,23 +33,6 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // 3. TÍCH HỢP BOWNOW FORM (Sử dụng useEffect để đảm bảo DOM đã sẵn sàng)
-  useEffect(() => {
-    const container = document.getElementById('bownow-form-container');
-    if (container) {
-      // Dọn dẹp nội dung cũ trước khi chèn (tránh lặp form khi hot-reload)
-      container.innerHTML = ''; 
-      
-      const script = document.createElement('script');
-      script.src = "https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js";
-      script.charset = "utf-8";
-      script.async = true;
-      
-      // Chèn script trực tiếp vào container
-      container.appendChild(script);
-    }
-  }, []);
 
   return (
     <main className="relative z-10 w-full">
@@ -178,7 +162,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. CONTACT FORM (BOWNOW) */}
+      {/* 5. CONTACT FORM (BOWNOW - SỬ DỤNG LOGIC CŨ CỦA BẠN) */}
       <section id="contact" className="py-16 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -186,30 +170,28 @@ export default function Home() {
             <p className="text-muted-foreground">Provide your details and we will provide a quote within 24 hours.</p>
           </div>
 
-          <div className="card-gradient border border-accent/30 rounded-2xl p-4 md:p-8 bg-[#0b1d36]/30 overflow-hidden">
-            {/* Sử dụng iframe srcDoc để tạo môi trường HTML tĩnh cho script BowNow */}
-            <iframe
-              srcDoc={`
-                <html>
-                  <head>
-                    <style>
-                      body { margin: 0; padding: 0; background: transparent; font-family: sans-serif; color: white; }
-                      /* Tùy chỉnh CSS cho form bên trong iframe nếu cần */
-                    </style>
-                  </head>
-                  <body>
-                    <div id="bownow-form-container"></div>
-                    <script type="text/javascript" src="https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js" charset="utf-8"></script>
-                  </body>
-                </html>
+          <div className="card-gradient border border-accent/30 rounded-2xl p-8 bg-white text-gray-900">
+             <h3 className="text-2xl font-bold mb-6">Contact Form</h3>
+            
+            {/* Wrapper giữ vị trí form - ID DỰA TRÊN SID MỚI */}
+            <div
+              className="relative w-full min-h-[400px]"
+              id="_bownow_cs_form_sid_79340359725cff1f243d"
+            >
+              <p className="text-center py-10 text-gray-400 italic">Loading form...</p>
+            </div>
+
+            {/* Script BowNow - Logic Inject Head từ project cũ */}
+            <Script id="_bownow_cs_sid_79340359725cff1f243d" strategy="afterInteractive">
+              {`
+                (function() {
+                  var _bownow_cs_sid_79340359725cff1f243d = document.createElement('script');
+                  _bownow_cs_sid_79340359725cff1f243d.charset = 'utf-8';
+                  _bownow_cs_sid_79340359725cff1f243d.src = 'https://contents.bownow.jp/forms/sid_79340359725cff1f243d/trace.js';
+                  document.getElementsByTagName('head')[0].appendChild(_bownow_cs_sid_79340359725cff1f243d);
+                })();
               `}
-              style={{
-                width: '100%',
-                height: '600px', // Bạn có thể tăng giảm chiều cao tùy vào độ dài của form
-                border: 'none',
-              }}
-              title="BowNow Form"
-            />
+            </Script>
           </div>
         </div>
       </section>
