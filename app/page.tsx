@@ -307,8 +307,8 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { title: 'Stylized Duo Enforcer', desc: 'Marmoset viewer file' },
-              { title: 'Stylized Male Enforcer', desc: 'Unreal Engine 5.0 - 5.7' },
-              { title: 'Stylized Bedroom', desc: 'Unity package file' }
+              { title: 'Stylized Male Enforcer', desc: 'Unreal Engine 5.0 - 5.7/ FBX file' },
+              { title: 'Stylized Bedroom', desc: 'Unity package file/ Unreal Engine 5.0 - 5.7/ FBX file ' }
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-2xl border border-cyan-900/60 bg-[#0b1d36] flex flex-col justify-between">
                 <div>
