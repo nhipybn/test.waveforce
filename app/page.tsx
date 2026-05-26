@@ -97,7 +97,7 @@ export default function Home() {
 
               <button
                 onClick={() => window.location.href = 'https://waveforce.studio/projects'}
-                className="px-6 py-2.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
+                className="w-full text-left px-4 py-3 text-foreground hover:text-accent transition-colors"
               >
                 Portfolio
               </button>
