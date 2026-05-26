@@ -87,7 +87,6 @@ export default function Home() {
                 </span>
               </button>
             </div>
-
             <div className="hidden md:flex items-center gap-4">
               <button
                 onClick={() => scrollToSection('why-us')}
@@ -95,16 +94,18 @@ export default function Home() {
               >
                 Our Services
               </button>
+
               <button
-                onClick={() => scrollToSection('portfolio')}
+                onClick={() => window.location.href = 'https://waveforce.studio/projects'}
                 className="px-6 py-2.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
               >
-                <button
-                  onClick={() => window.location.href = 'https://waveforce.studio/projects'}
-                  className="px-6 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105"
-                >
-                  Portfolio
-                </button>
+                Portfolio
+              </button>
+
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="px-6 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105"
+              >
                 Contact Us
               </button>
             </div>
@@ -378,10 +379,10 @@ export default function Home() {
             {[
               { img: '/images/portfolio1.jpg', title: 'Stylized Enforcer - My team`s project' },
               { img: '/images/portfolio2.jpg', title: 'Stylized Bedroom - Modular Asset Kit' },
-              { img: '/images/portfolio3.jpg', title: 'Stylized character - ROVE' }
+              { img: '/images/portfolio3.jpg', title: 'Stylized character - ROVE' },
               { img: '/images/portfolio4.jpg', title: 'Stylized Enforcer - My team`s project' },
               { img: '/images/portfolio5.png', title: 'Steampunk Armor' },
-              { img: '/images/service1.jpg', title: 'Another Pint - The Client`s Project' }
+              { img: '/images/service1.jpg', title: 'Another Pint - The Client`s Project' },
             ].map((item, i) => (
               <div key={i} className="relative h-80 rounded-xl overflow-hidden group border border-accent/20 hover:border-accent transition-all hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/30">
                 <Image src={item.img} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
