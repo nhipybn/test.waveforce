@@ -71,24 +71,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 md:h-24">
             <div className="flex-shrink-0">
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="flex items-center gap-3"
-              >
-                <Image
-                  src="/logo.png"
-                  alt="Waveforce Studio"
-                  width={60}
-                  height={60}
-                  className="h-14 md:h-16 w-auto"
-                />
-                <span className="hidden sm:block text-base md:text-lg font-bold">
-                  <span className="text-foreground">WAVE</span>
-                  <span className="text-accent">FORCE</span>
-                </span>
-              </button>
-            </div>
-            <div className="hidden md:flex items-center gap-4">
+              {/* --- ĐÂY LÀ GIAO DIỆN TRÊN MÁY TÍNH (PC NAVIGATION) --- */}
               <button
                 onClick={() => scrollToSection('why-us')}
                 className="px-6 py-2.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
@@ -96,12 +79,13 @@ export default function Home() {
                 Our Services
               </button>
 
-              <button
-                onClick={() => window.location.href = 'https://waveforce.studio/projects'}
-                className="w-full text-left px-4 py-3 text-foreground hover:text-accent transition-colors"
+              {/* Portfolio đã được thêm khung viền đồng bộ và đổi thành Link chuẩn */}
+              <Link
+                href="https://waveforce.studio/projects"
+                className="px-6 py-2.5 border-2 border-transparent text-foreground hover:text-accent font-semibold transition-all flex items-center justify-center"
               >
                 Portfolio
-              </button>
+              </Link>
 
               <button
                 onClick={() => scrollToSection('contact')}
@@ -111,6 +95,7 @@ export default function Home() {
               </button>
             </div>
 
+            {/* NÚT ĐÓNG MỞ MENU TRÊN ĐIỆN THOẠI */}
             <button
               onClick={() => setIsNavOpen(!isNavOpen)}
               className="md:hidden p-2 text-foreground hover:text-accent"
@@ -119,23 +104,34 @@ export default function Home() {
             </button>
           </div>
 
+          {/* --- ĐÂY LÀ GIAO DIỆN TRÊN ĐIỆN THOẠI (MOBILE MENU TỐI ƯU) --- */}
           {isNavOpen && (
             <div className="md:hidden pb-4 space-y-3 border-t border-border pt-4">
               <button
-                onClick={() => scrollToSection('why-us')}
+                onClick={() => {
+                  scrollToSection('why-us');
+                  setIsNavOpen(false);
+                }}
                 className="block w-full px-4 py-2.5 text-left border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
               >
                 Why Us
               </button>
+
+              {/* Nút Portfolio trên điện thoại: Dạng dòng chữ menu, chạm phát ăn ngay */}
               <Link
-                href="/projects"
-                className="block w-full text-left px-4 py-3 text-foreground hover:text-accent transition-colors"
+                href="https://waveforce.studio/projects"
+                onClick={() => setIsNavOpen(false)}
+                className="block w-full text-left px-4 py-3 text-foreground hover:text-accent transition-colors font-semibold"
               >
                 Portfolio
               </Link>
+
               <button
-                onClick={() => scrollToSection('contact')}
-                className="block w-full px-4 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold"
+                onClick={() => {
+                  scrollToSection('contact');
+                  setIsNavOpen(false);
+                }}
+                className="block w-full px-4 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold text-center"
               >
                 Contact Us
               </button>
