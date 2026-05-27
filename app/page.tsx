@@ -511,32 +511,45 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
 
             {/* CỘT 1: LOGO VÀ THÔNG TIN CÔNG TY (Cột trái ngoài cùng) */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 mb-4">
-                <Image src="/logo.png" alt="Waveforce Studio" width={40} height={40} className="h-8 w-auto object-contain" />
-                <span className="font-bold text-sm">
-                  <span className="text-foreground">WAVE</span>
-                  <span className="text-accent">FORCE</span>
-                </span>
-              </div>
-              <p className="text-sm text-gray-300 leading-relaxed">
-                Founded in 2025 by Duc Minh Pham - a Lead 3D Artist with 7 years
-                of specialized production experience - Waveforce Studio was built
-                from the ground up to solve the 3D outsourcing needs of indie studios
-                with optimized, game-ready assets.
-              </p>
-              <div className="text-xs space-y-1 pt-2 border-t border-accent/10">
-                <p className="text-gray-300">
-                  <span className="font-semibold text-white">Email:</span>{' '}
-                  <a href="mailto:business@waveforce-studio.com" className="text-orange-400 hover:underline">
-                    business@waveforce-studio.com
-                  </a>
-                </p>
-                <p className="text-gray-300 leading-normal">
-                  <span className="font-semibold text-white">Address:</span> 252 Tay Son Street, Dong Da Ward, Hanoi, Vietnam
-                </p>
-              </div>
-            </div>
+<div className="space-y-4">
+  <div className="flex items-center gap-2 mb-4">
+    <Image src="/logo.png" alt="Waveforce Studio" width={40} height={40} className="h-8 w-auto object-contain" />
+    <span className="font-bold text-sm">
+      <span className="text-foreground">WAVE</span>
+      <span className="text-accent">FORCE</span>
+    </span>
+  </div>
+  <p className="text-sm text-gray-300 leading-relaxed">
+    Founded in 2025 by Duc Minh Pham - a Lead 3D Artist with 7 years
+    of specialized production experience - Waveforce Studio was built
+    from the ground up to solve the 3D outsourcing needs of indie studios
+    with optimized, game-ready assets.
+  </p>
+  
+  {/* HÀNG MỚI ĐƯỢC CHÈN NGAY DƯỚI ĐOẠN VĂN GIỚI THIỆU */}
+  <div className="text-sm pb-2">
+    <a 
+      href="https://sorcery.gg/portfolio/minhpham" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="text-orange-400 hover:underline inline-flex items-center gap-1 font-medium"
+    >
+      View Minh Pham's Profile →
+    </a>
+  </div>
+
+  <div className="text-xs space-y-1 pt-2 border-t border-accent/10">
+    <p className="text-gray-300">
+      <span className="font-semibold text-white">Email:</span>{' '}
+      <a href="mailto:business@waveforce-studio.com" className="text-orange-400 hover:underline">
+        business@waveforce-studio.com
+      </a>
+    </p>
+    <p className="text-gray-300 leading-normal">
+      <span className="font-semibold text-white">Address:</span> 252 Tay Son Street, Dong Da Ward, Hanoi, Vietnam
+    </p>
+  </div>
+</div>
 
             {/* CỘT 2: 3D GAME ART (Đúng chữ trong ảnh) */}
             <div>
