@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, ArrowRight, Download } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link';
 
 export default function Home() {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -126,12 +127,12 @@ export default function Home() {
               >
                 Why Us
               </button>
-              <button
-                onClick={() => scrollToSection('portfolio')}
-                className="block w-full px-4 py-2.5 text-left border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
+              <Link
+                href="/projects"
+                className="block w-full text-left px-4 py-3 text-foreground hover:text-accent transition-colors"
               >
                 Portfolio
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="block w-full px-4 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold"
