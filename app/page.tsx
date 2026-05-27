@@ -67,61 +67,74 @@ export default function Home() {
   return (
     <main className="relative z-10 w-full">
       {/* Navbar */}
-      <nav id="navbar" className="sticky top-0 z-50 border-b border-border transition-all duration-300">
+      <nav id="navbar" className="sticky top-0 z-50 border-b border-border transition-all duration-300 bg-[#081529]/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 md:h-24">
-            <div className="flex-shrink-0">
-              {/* --- ĐÂY LÀ GIAO DIỆN TRÊN MÁY TÍNH (PC NAVIGATION) --- */}
+          <div className="flex items-center justify-between h-20 md:h-24 w-full">
+            
+            {/* 1. KHU VỰC LOGO VÀ MENU GỐC (GIỮ NGUYÊN BỐ CỤC BAN ĐẦU CỦA ANH) */}
+            <div className="flex items-center space-x-4">
+              {/* Vị trí chèn LOGO của anh (Nếu có thẻ <Image> hoặc chữ logo ban đầu, anh cứ giữ lại nhé) */}
+              <div className="flex-shrink-0">
+                <span className="text-xl font-bold text-white tracking-wider">WAVEFORCE</span>
+              </div>
+            </div>
+
+            {/* 2. KHU VỰC MENU TRÊN MÁY TÍNH (PC NAVIGATION) */}
+            {/* Lệnh 'hidden md:flex' giúp đống nút này CHỈ HIỆN TRÊN PC, CÒN ĐIỆN THOẠI SẼ ẨN HẲN */}
+            <div className="hidden md:flex items-center space-x-4 ml-auto">
               <button
                 onClick={() => scrollToSection('why-us')}
-                className="px-6 py-2.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
+                className="px-6 py-2.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all text-sm"
               >
                 Our Services
               </button>
 
-              {/* Portfolio đã được thêm khung viền đồng bộ và đổi thành Link chuẩn */}
+              {/* Portfolio trên PC: Đã thêm viền trắng mờ để có Khung Viền đồng bộ với 2 nút kia */}
               <Link
                 href="https://waveforce.studio/projects"
-                className="px-6 py-2.5 border-2 border-transparent text-foreground hover:text-accent font-semibold transition-all flex items-center justify-center"
+                className="px-6 py-2.5 border-2 border-white/20 text-foreground hover:border-accent hover:text-accent rounded-lg font-semibold transition-all text-sm flex items-center justify-center h-[42px]"
               >
                 Portfolio
               </Link>
 
               <button
                 onClick={() => scrollToSection('contact')}
-                className="px-6 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105"
+                className="px-6 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105 text-sm"
               >
                 Contact Us
               </button>
             </div>
 
-            {/* NÚT ĐÓNG MỞ MENU TRÊN ĐIỆN THOẠI */}
+            {/* 3. NÚT BA GẠCH / ĐÓNG MENU (CHỈ HIỆN TRÊN ĐIỆN THOẠI) */}
+            {/* Lệnh 'md:hidden' giúp ẩn nút này khi xem trên máy tính */}
             <button
               onClick={() => setIsNavOpen(!isNavOpen)}
-              className="md:hidden p-2 text-foreground hover:text-accent"
+              className="md:hidden p-2 text-foreground hover:text-accent transition-colors ml-auto z-50"
+              aria-label="Toggle Menu"
             >
               {isNavOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
-          {/* --- ĐÂY LÀ GIAO DIỆN TRÊN ĐIỆN THOẠI (MOBILE MENU TỐI ƯU) --- */}
+          {/* ========================================================= */}
+          {/* 4. GIAO DIỆN DROPDOWN TRÊN ĐIỆN THOẠI (Y HỆT HÌNH ANH GỬI) */}
+          {/* ========================================================= */}
           {isNavOpen && (
-            <div className="md:hidden pb-4 space-y-3 border-t border-border pt-4">
+            <div className="md:hidden absolute left-0 right-0 top-full bg-[#081529]/95 backdrop-blur-md border-b border-border px-6 py-6 space-y-4 shadow-xl z-50 rounded-b-xl animate-in fade-in slide-in-from-top-5 duration-200">
               <button
                 onClick={() => {
                   scrollToSection('why-us');
                   setIsNavOpen(false);
                 }}
-                className="block w-full px-4 py-2.5 text-left border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
+                className="block w-full text-center py-3 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-all"
               >
-                Why Us
+                Our Services
               </button>
 
-              {/* Nút Portfolio trên điện thoại: Dạng dòng chữ menu, chạm phát ăn ngay */}
               <Link
                 href="https://waveforce.studio/projects"
                 onClick={() => setIsNavOpen(false)}
-                className="block w-full text-left px-4 py-3 text-foreground hover:text-accent transition-colors font-semibold"
+                className="block w-full text-center py-3 border-2 border-white/20 text-foreground rounded-lg font-semibold hover:border-accent hover:text-accent transition-all"
               >
                 Portfolio
               </Link>
@@ -131,7 +144,7 @@ export default function Home() {
                   scrollToSection('contact');
                   setIsNavOpen(false);
                 }}
-                className="block w-full px-4 py-2.5 bg-accent text-accent-foreground rounded-lg font-semibold text-center"
+                className="block w-full text-center py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg shadow-accent/30 transition-all"
               >
                 Contact Us
               </button>
